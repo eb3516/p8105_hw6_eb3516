@@ -37,7 +37,33 @@ weather_df=
   select(name, id, everything())
 ```
 
+The linear model predicts `tmax` using `tmin` and `prcp`.
 
+Next, we will run 5000 bootstraps to estimate R-squared and log(B1*B2).
+
+```{r}
+weather_bootstrap = weather_df |>
+  bootstrap(n=5000) |>
+  mutate(
+    models=map(strap, \(weather_df) lm(tmax~tmin+prcp, weather_df)),
+    results=map(models, broom::tidy),
+    rsq=map(models, broom::glance)
+  ) |>
+  select(-strap, -models) |>
+  unnest(results) |>
+  filter(term %in% c("tmin", "prcp")) |>
+  group_by(.id) |>
+  mutate(B1x2=sum(estimate)) |>
+  select(B1x2, rsq) |>
+  unnest(rsq) |>
+  janitor::clean_names() |>
+  select(id, b1x2, r_squared) |> unique()
+```
+  
+  
+  
+  
+  
 
 
 
