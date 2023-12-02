@@ -60,10 +60,21 @@ weather_bootstrap = weather_df |>
   select(id, b1x2, r_squared) |> unique()
 ```
   
+Next, we'll calculate the confidence intervals.
+
+```{r}
+weather_bootstrap |>
+  summarize(
+    rsq_lower_ci=quantile(r_squared, 0.025),
+    rsq_upper_ci=quantile(r_squared, 0.975)
+  )
   
-  
-  
-  
+weather_bootstrap |>
+  summarize(
+    beta_lower_ci=quantile(b1x2, 0.025),
+    beta_upper_ci=quantile(b1x2, 0.975)
+  )
+``` 
 
 
 
