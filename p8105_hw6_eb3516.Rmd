@@ -1,0 +1,10 @@
+---
+title: "p8105_hw6_eb3516"
+author: "Liz Bekerman"
+date: "2023-12-02"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
