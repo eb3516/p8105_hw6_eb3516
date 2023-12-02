@@ -76,5 +76,17 @@ weather_bootstrap |>
   )
 ``` 
 
+Lastly, we'll plot distributions.
+
+```{r}
+weather_bootstrap |>
+  ggplot(aes(x=b1x2)) + geom_density()
+
+weather_bootstrap |>
+  ggplot(aes(x=r_squared)) + geom_density()
+```
+
+
+
 
 
