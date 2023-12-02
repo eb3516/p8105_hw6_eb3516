@@ -87,6 +87,16 @@ weather_bootstrap |>
 ```
 
 
+## Problem 3
+First, we import and tidy the birthweight data.
+
+```{r}
+  birthweight_df=read_csv("birthweight.csv") |>
+    mutate(babysex=as.factor(babysex),
+           frace=as.factor(frace),
+           malform=as.factor(malform),
+           mrace=as.factor(mrace))
+```
 
 
 
